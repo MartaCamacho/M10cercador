@@ -1,12 +1,12 @@
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState, mapMutations } from 'vuex';
 
 export default {
   name: "SearchFilm",
-  props: {},
-  methods: {
-      ...mapActions(['getMovies'])
-  },
   computed: {
       ...mapState(['movies'])
+  },
+  methods: {
+      ...mapActions(['getMovies']),
+      ...mapMutations(['setMovies'])
   }
 };
