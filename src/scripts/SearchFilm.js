@@ -21,6 +21,7 @@ export default {
         }
     },
     filteredData() {
+        console.log(this.$store.state.searchInput.length)
         if(this.$store.state.searchInput.length > 2) {
             return this.$store.state.movies.filter((movie) => movie.title.toLowerCase().match(this.$store.state.searchInput.toLowerCase()))
         } else {

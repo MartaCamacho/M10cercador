@@ -37,24 +37,6 @@ const store = new Vuex.Store({
         }
         console.log(state.filteredMovies)
     },
-    searchResult: function(state, value) {
-        let tempMovies
-        if(state.filteredMovies !== []){
-          tempMovies = state.filteredMovies;
-        } else {
-          tempMovies = state.movies;
-        }
-        console.log(tempMovies)
-        if (value != '' && value.length > 3) {
-            tempMovies = tempMovies.filter((item) => {
-                return item.title
-                    .toUpperCase()
-                    .includes(value.toUpperCase())
-                })
-            }
-            
-        state.filteredMovies = tempMovies;
-    }
   },
   actions: {
     getMovies: async function({ commit }) {
@@ -64,10 +46,6 @@ const store = new Vuex.Store({
     },
     getAvailable: async function({ commit }, value) {
         commit("setAvailable", value);
-    },
-    getFiltered: async function({ commit }, value) {
-      console.log(value)
-        commit("searchResult", value);
     },
   }
 });

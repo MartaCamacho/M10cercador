@@ -32,7 +32,6 @@
         </b-card>
         </b-card-group>
       </div>
-      
     </div>
     
     <div class="d-flex row" v-else>
