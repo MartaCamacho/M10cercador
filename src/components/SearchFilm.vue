@@ -48,6 +48,9 @@
         </b-card-group>
       </div>
     </div>
+    <div v-if="filteredData.length === 0">
+      <b-alert variant="danger" show>No hay películas disponibles</b-alert>
+    </div>
 
   </div>
 </template>
