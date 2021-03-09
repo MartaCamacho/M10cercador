@@ -20,6 +20,13 @@ export default {
             this.$store.commit("setSearch", value)
         }
     },
+    filteredData() {
+        if(this.$store.state.searchInput.length > 2) {
+            return this.$store.state.movies.filter((movie) => movie.title.toLowerCase().match(this.$store.state.searchInput.toLowerCase()))
+        } else {
+            return this.$store.state.filteredMovies
+        }
+    }
   },
   methods: {
       ...mapActions(["getMovies", "getAvailable", "getFiltered"]),
@@ -27,5 +34,6 @@ export default {
   },
   mounted: async function(){
     await this.$store.dispatch('getMovies');
-  }
+  },
+  
 };
