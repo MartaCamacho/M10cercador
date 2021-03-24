@@ -1,10 +1,53 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import films from "./../public/assets/movies.json";
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
+    films: films,
+    filters: {
+      search: '',
+      available: true
+    }
+  },
+  mutations: {
+    SetSearch(state, search) {
+      state.filters.search = search;
+    },
+    SetAvailable(state) {
+      state.filters.available = !state.filters.available;
+    },
+  },
+  getters: {
+    FilteredFilms(state){
+      let films = state.films;
+      let filmsRefresh = [];
+
+      if(state.filters.search.length > 2){
+        for(const film of films){
+          if(film.available === state.filters.available){
+            if(film.title.toLocaleLowerCase().includes(state.filters.search)){
+              filmsRefresh.push(film);
+            }
+          }
+        }
+        films = filmsRefresh;
+        return films;
+      } else {
+        for(const film of films){
+          if(film.available === state.filters.available){
+            filmsRefresh.push(film);
+          }
+        }
+        films = filmsRefresh;
+        return films;
+      }
+    }
+  }
+
+  /* state: {
     movies: [],
     searchInput: "",
     available: 'all',
@@ -47,7 +90,7 @@ const store = new Vuex.Store({
     getAvailable: async function({ commit }, value) {
         commit("setAvailable", value);
     },
-  }
+  } */
 });
 
 export default store;

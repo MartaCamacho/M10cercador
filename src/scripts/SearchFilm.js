@@ -1,8 +1,29 @@
-import { mapActions, mapState, mapMutations } from "vuex";
+/* import { mapActions, mapState, mapMutations } from "vuex"; */
+import store from "./../store";
+import ListFilms from "./../components/ListFilms.vue"
 
 export default {
-  name: "SearchFilm",
-  computed: {
+    components: { ListFilms },
+    computed: {
+        SearchForm: {
+            get() {
+                return store.state.filters.search;
+            },
+            set(value) {
+                store.commit("SetSearch", value)
+            }
+        },
+        Available: {
+            get() {
+                return store.state.filters.available;
+            },
+            set(value) {
+                store.commit("SetAvailable", value)
+            }
+        }
+    }
+
+  /* computed: {
       ...mapState(["movies", "searchInput", "available", "filteredMovies"]),
       available: {
           get() {
@@ -35,5 +56,5 @@ export default {
   mounted: async function(){
     await this.$store.dispatch('getMovies');
   },
-  
+   */
 };
